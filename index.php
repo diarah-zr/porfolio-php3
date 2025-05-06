@@ -26,6 +26,25 @@
             Vos informations
         </h2>
         <ul>
+            <?php foreach ($_POST as $value) {
+                    if (empty($value)) {
+                        $hasEmpty = true;
+                        break;
+                    }
+                }
+                ?>
+                <?php  include_once __DIR__   ?>
+
+                <?php if ($hasEmpty): ?>
+                    <p style="Warning">Erreur : au moins un champ est vide.</p>
+                <?php else: ?>
+                    <ul>
+                        <?php foreach ($_POST as $key => $value): ?>
+                            <li><?= $key." ".htmlspecialchars($value) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            
             <?php foreach($_POST as $key => $value) : ?>
                 <?php if(!empty($value)) : ?>
              <li><?= $key. " ". $value ?></li>  
@@ -36,6 +55,8 @@
              <?php endforeach ?>
 
             <?php
+            
+            
            /*  foreach($_POST as $key => $value){
                 if(empty($value)){
                     print "<li> $key :valeur obligatoire </li>";
